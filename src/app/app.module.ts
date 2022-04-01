@@ -5,16 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {UserRegistrationModule} from './user-registration/user-registration.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
-    UserProfileComponent
+    UserProfileComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    UserRegistrationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

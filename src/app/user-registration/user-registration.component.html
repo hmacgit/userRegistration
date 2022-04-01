@@ -1,3 +1,15 @@
 <p>user-registration works!</p>
 
-//name, email,password, and bio
+
+<form
+  [formGroup]="fg"
+  (ngSubmit)="saveEvent()">
+  <div class="p-grid p-fluid my-1">
+    <div class="p-col-12 p-md-1">
+      <label>{{controlConstants.name}}</label>
+      <input type="text"
+             pInputText
+             [formControlName]="controlConstants.name"/>
+    </div>
+  </div>
+</form>
