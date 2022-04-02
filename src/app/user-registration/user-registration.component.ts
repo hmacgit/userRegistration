@@ -4,6 +4,9 @@ import {UserRegistrationService} from './user-registration.service';
 import {UserRegistrationConstants} from './user-registration.constants';
 import {Store} from '@ngxs/store';
 import {SetAuthDataAction} from '../../store/auth/auth.actions';
+import {AuthService} from '../../store/auth/auth.service';
+import {Navigate} from '@ngxs/router-plugin';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -15,11 +18,19 @@ export class UserRegistrationComponent implements OnInit {
   fg: FormGroup;
   controlConstants = UserRegistrationConstants.controls;
 
-  constructor(private userReg: UserRegistrationService, private _store: Store) { }
+  constructor(
+    private userReg: UserRegistrationService,
+    private _authService: AuthService,
+    private _router: Router,
+    private _store: Store
+  ) { }
 
   ngOnInit(): void {
     this.fg = this.userReg.dataEntry();
+  }
 
+  login() {
+    new Navigate(['profile']);
   }
 
   submit() {

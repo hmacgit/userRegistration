@@ -3,8 +3,13 @@ import {
   SetAuthDataAction
 } from './auth.actions';
 import {AuthService} from './auth.service';
-import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {
+  mergeMap,
+  tap
+} from 'rxjs/operators';
+import produce from 'immer';
+import { Navigate } from '@ngxs/router-plugin';
 
 export interface AuthenticationStateModel {
   id: string;
@@ -12,7 +17,7 @@ export interface AuthenticationStateModel {
   email: string;
   password: string;
   bio: string;
-  authorized: boolean;
+  success: boolean;
 }
 
 @State<AuthenticationStateModel>({
@@ -23,7 +28,7 @@ export interface AuthenticationStateModel {
     email: '',
     password: '',
     bio: '',
-    authorized: false
+    success: false
   }
 })
 
@@ -49,7 +54,19 @@ export class AuthStateModule {
   @Action(SetAuthDataAction)
   public setAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: SetAuthDataAction) {
     setState(AuthStateModule.setInstanceState(payload));
-    return this._authService.getAuth();
+    //todo dispatch spinner
+    return this._authService.getAuth().pipe(
+      tap(({ success }) => {
+        setState(produce((draft: AuthenticationStateModel) => {
+          draft.success = true;
+        }));
+      }),
+      mergeMap(({ success }) => dispatch([
+        //todo stop spinner
+        new Navigate(['profile']),
+        //new LoginFlag(true)
+      ]))
+    );
   }
 
 
