@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {UserRegistrationModule} from './user-registration/user-registration.module';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxsStoreModule} from '../store/store.module';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {NgxsStoreModule} from '../store/store.module';
     UserRegistrationModule,
     NgxsStoreModule,
     MatButtonModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
