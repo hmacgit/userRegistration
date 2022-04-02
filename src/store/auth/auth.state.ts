@@ -2,6 +2,9 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   SetAuthDataAction
 } from './auth.actions';
+import {AuthService} from './auth.service';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
 export interface AuthenticationStateModel {
   id: string;
@@ -23,7 +26,13 @@ export interface AuthenticationStateModel {
     authorized: false
   }
 })
+
+@Injectable()
 export class AuthStateModule {
+
+  constructor(private _authService: AuthService) {
+  }
+
   @Selector()
   public static getAuthData(state: AuthenticationStateModel): AuthenticationStateModel {
     return AuthStateModule.getInstanceState(state);
@@ -40,6 +49,7 @@ export class AuthStateModule {
   @Action(SetAuthDataAction)
   public setAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: SetAuthDataAction) {
     setState(AuthStateModule.setInstanceState(payload));
+    return this._authService.getAuth();
   }
 
 

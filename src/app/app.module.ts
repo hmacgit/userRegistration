@@ -10,6 +10,8 @@ import {UserRegistrationModule} from './user-registration/user-registration.modu
 import {MatButtonModule} from '@angular/material/button';
 import {NgxsStoreModule} from '../store/store.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {AuthModule} from '../store/auth/auth.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     NgxsStoreModule,
     MatButtonModule,
     MatFormFieldModule,
+    AuthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
