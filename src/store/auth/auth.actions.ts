@@ -1,7 +1,11 @@
 import { AuthenticationStateModel } from './auth.state';
 
-export class SetAuthData {
-  public static readonly type = '[Auth] Auth data';
+export enum AuthActionTypes {
+  SET = '[Auth] Set Auth data',
+}
+
+export class SetAuthDataAction {
+  public static readonly type = AuthActionTypes.SET
 
   constructor(public payload: AuthenticationStateModel) {}
 }

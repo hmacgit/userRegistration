@@ -13,7 +13,6 @@ export class UserRegistrationComponent implements OnInit {
   fg: FormGroup;
   controlConstants = UserRegistrationConstants.controls;
 
-
   constructor(private userReg: UserRegistrationService) { }
 
   ngOnInit(): void {
