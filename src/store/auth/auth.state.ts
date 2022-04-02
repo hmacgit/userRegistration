@@ -5,20 +5,22 @@ import {
 
 export interface AuthenticationStateModel {
   id: string;
-  name: 'name',
-  email: 'email',
-  password: 'password',
-  bio: 'bio'
+  name: string;
+  email: string;
+  password: string;
+  bio: string;
+  authorized: boolean;
 }
 
 @State<AuthenticationStateModel>({
   name: 'authStateModule',
   defaults: {
     id: '',
-    name: 'name',
-    email: 'email',
-    password: 'password',
-    bio: 'bio'
+    name: '',
+    email: '',
+    password: '',
+    bio: '',
+    authorized: false
   }
 })
 export class AuthStateModule {

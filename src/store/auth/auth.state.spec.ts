@@ -1,7 +1,7 @@
 import { NgxsModule, Store } from '@ngxs/store';
 import { async, TestBed } from '@angular/core/testing';
 import { AuthenticationStateModel, AuthStateModule } from './auth.state';
-import { SetAuthData } from './auth.actions';
+import { SetAuthDataAction } from './auth.actions';
 
 describe('[TEST]: AuthStore', () => {
   let store: Store;
@@ -18,13 +18,13 @@ describe('[TEST]: AuthStore', () => {
   it('Should be correct dispatch and value is empty', () => {
     const Authentication: AuthenticationStateModel = {
       id: '',
-      firstName: '',
-      lastName: '',
-      fullName: '',
+      name: '',
       email: '',
-      roles: []
+      password: '',
+      bio: '',
+      authorized: false
     };
-    store.dispatch(new SetAuthData(Authentication));
+    store.dispatch(new SetAuthDataAction(Authentication));
     const actual = store.selectSnapshot<AuthenticationStateModel>(AuthStateModule.getAuthData);
     expect(actual).toEqual(Authentication);
   });
@@ -32,14 +32,14 @@ describe('[TEST]: AuthStore', () => {
   it('Should be correct dispatch and next value is correct completed', () => {
     const authentication: AuthenticationStateModel = {
       id: '12',
-      firstName: 'Adam',
-      lastName: 'Gordon',
-      fullName: 'Adam Gordon',
+      name: 'Adam',
+      password: 'Gordon',
+      bio: 'Adam Gordon',
       email: 'agordon@google.com',
-      roles: ['ADMIN']
+      authorized: true
     };
 
-    store.dispatch(new SetAuthData(authentication));
+    store.dispatch(new SetAuthDataAction(authentication));
     const actual = store.selectSnapshot<AuthenticationStateModel>(AuthStateModule.getAuthData);
     expect(actual).toEqual(authentication);
   });
