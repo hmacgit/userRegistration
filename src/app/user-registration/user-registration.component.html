@@ -1,24 +1,43 @@
 <form
   [formGroup]="fg"
-  (ngSubmit)="saveEvent()">
+  (ngSubmit)="submit()">
   <div class="p-grid p-fluid my-1">
-    <div class="p-col-12 p-md-1">
+    <div
+      class="p-col-12 p-md-3 p-lg-3">
       <label>{{controlConstants.name}}</label>
       <input type="text"
-             pInputText
              [formControlName]="controlConstants.name"/>
+    </div>
+
+    <div
+      class="p-col-12 p-md-3 p-lg-3">
       <label>{{controlConstants.email}}</label>
       <input type="text"
-             pInputText
              [formControlName]="controlConstants.email"/>
+    </div>
+
+    <div
+      class="p-col-12 p-md-3 p-lg-3">
       <label>{{controlConstants.password}}</label>
       <input type="text"
-             pInputText
              [formControlName]="controlConstants.password"/>
+    </div>
+
+    <div
+      class="p-col-12 p-md-3 p-lg-3">
       <label>{{controlConstants.bio}}</label>
       <input type="text"
-             pInputText
              [formControlName]="controlConstants.bio"/>
     </div>
+
+    <div
+      class="p-grid p-fluid my-1 d-flex">
+      <button
+        type="submit"
+        label="Submit"
+        mat-raised-button
+        color="primary">Submit</button>
+    </div>
+
   </div>
 </form>

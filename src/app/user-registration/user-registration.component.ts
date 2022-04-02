@@ -20,9 +20,10 @@ export class UserRegistrationComponent implements OnInit {
 
   }
 
-  saveEvent() {
-
+  submit() {
+    console.log('submit');
   }
+
 
 
 }

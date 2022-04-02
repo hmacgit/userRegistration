@@ -7,6 +7,8 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {UserRegistrationModule} from './user-registration/user-registration.module';
+import {MatButtonModule} from '@angular/material/button';
+import {NgxsStoreModule} from '../store/store.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {UserRegistrationModule} from './user-registration/user-registration.modu
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    UserRegistrationModule
+    UserRegistrationModule,
+    NgxsStoreModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
