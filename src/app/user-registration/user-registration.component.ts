@@ -22,6 +22,11 @@ export class UserRegistrationComponent implements OnInit {
 
   submit() {
     console.log('submit');
+    if (this.fg.valid) {
+
+    } else {
+      this.fg.markAllAsTouched();
+    }
   }
 
 

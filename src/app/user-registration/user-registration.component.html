@@ -4,47 +4,41 @@
   [formGroup]="fg"
   (ngSubmit)="submit()">
 
-
-
-
-
-  <div class="p-grid p-fluid my-1">
-    <div class="card">
-      <h5>User Registration Page</h5>
-      <div class="formgrid grid">
-        <div class="field col">
-          <label>{{controlConstants.name}}</label>
-          <input type="text"
-                 [formControlName]="controlConstants.name"
-                 class="inputfield w-full">
-        </div>
-        <div class="field col">
-          <label>{{controlConstants.email}}</label>
-          <input type="text"
-                 [formControlName]="controlConstants.email"
-                 class="inputfield w-full">
-        </div>
-        <div class="field col">
-          <label>{{controlConstants.password}}</label>
-          <input type="text"
-                 [formControlName]="controlConstants.password"
-                 class="inputfield w-full">
-        </div>
-        <div class="field col">
-          <label>{{controlConstants.bio}}</label>
-          <input type="text"
-                 [formControlName]="controlConstants.bio"
-                 class="inputfield w-full">
-        </div>
+  <div class="card m-2">
+    <h5 class="m-2">User Registration Page</h5>
+    <div class="formgrid grid m-2">
+      <div class="field col">
+        <label>{{controlConstants.name}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.name"
+               class="inputfield w-full">
       </div>
-      <div
-        class="p-grid p-fluid my-1 d-flex">
-        <button
-          type="submit"
-          label="Submit"
-          mat-raised-button
-          color="primary">Submit</button>
+      <div class="field col">
+        <label>{{controlConstants.email}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.email"
+               class="inputfield w-full">
       </div>
+      <div class="field col">
+        <label>{{controlConstants.password}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.password"
+               class="inputfield w-full">
+      </div>
+      <div class="field col">
+        <label>{{controlConstants.bio}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.bio"
+               class="inputfield w-full">
+      </div>
+    </div>
+    <div
+      class="p-grid p-fluid my-1 d-flex">
+      <button
+        type="submit"
+        label="Submit"
+        mat-raised-button
+        color="primary">Submit</button>
     </div>
   </div>
 
