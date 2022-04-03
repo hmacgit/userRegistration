@@ -22,7 +22,8 @@ describe('[TEST]: AuthStore', () => {
       email: '',
       password: '',
       bio: '',
-      authorized: false
+      success: false,
+      loggedIn: false,
     };
     store.dispatch(new SetAuthDataAction(Authentication));
     const actual = store.selectSnapshot<AuthenticationStateModel>(AuthStateModule.getAuthData);
@@ -36,7 +37,8 @@ describe('[TEST]: AuthStore', () => {
       password: 'Gordon',
       bio: 'Adam Gordon',
       email: 'agordon@google.com',
-      authorized: true
+      success: true,
+      loggedIn: true,
     };
 
     store.dispatch(new SetAuthDataAction(authentication));
