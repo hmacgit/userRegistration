@@ -11,7 +11,7 @@ export class SetUser {
   constructor(public payload: PersonStateModel) {}
 }
 
-export class GetUser {
+export class GetUserAction {
   public static readonly type = UserActionTypes.GET;
-  constructor(public payload: PersonStateModel) {}
+  constructor(public payload: number) {}
 }

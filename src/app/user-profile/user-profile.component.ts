@@ -5,6 +5,7 @@ import {UserRegistrationProfileService} from '../services/user-registration-prof
 import {AuthService} from '../../store/auth/auth.service';
 import {Router} from '@angular/router';
 import {Store} from '@ngxs/store';
+import {GetUserAction} from '../../store/dashboard/states/user/user.actions';
 
 @Component({
   selector: 'app-user-profile',
@@ -14,6 +15,7 @@ import {Store} from '@ngxs/store';
 export class UserProfileComponent implements OnInit {
   fg: FormGroup;
   controlConstants = UserRegistrationProfileConstants.controls;
+  mockId = 12345;
 
   constructor(
     private userReg: UserRegistrationProfileService,
@@ -26,6 +28,10 @@ export class UserProfileComponent implements OnInit {
     this.fg = this.userReg.UserProfile();
   }
 
+
+  getItem() {
+    this._store.dispatch(new GetUserAction(this.mockId));
+  }
 
   logout() {
     //logout

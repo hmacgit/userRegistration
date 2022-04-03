@@ -83,6 +83,7 @@ export class AuthStateModule {
 
   @Action(GetAuthDataAction)
   public getAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: GetAuthDataAction) {
+    /*
     return this._authService
       .getProfile()
       .pipe(
@@ -96,6 +97,7 @@ export class AuthStateModule {
           //todo stop spinner
         ]))
       );
+      */
   }
 
 

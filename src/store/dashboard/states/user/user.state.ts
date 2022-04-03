@@ -1,8 +1,15 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
-  GetUser,
+  GetUserAction,
   SetUser
 } from './user.actions';
+import {UserService} from './user.service';
+import {Injectable} from '@angular/core';
+import {
+  mergeMap,
+  tap
+} from 'rxjs/operators';
+import produce from 'immer';
 
 export interface PersonStateModel {
   id: string;
@@ -22,7 +29,13 @@ export interface PersonStateModel {
     img: ''
   }
 })
+
+@Injectable()
 export class UserState {
+
+  constructor(private _userService: UserService) {
+  }
+
   @Selector()
   public static getUser(state: PersonStateModel): PersonStateModel {
     return state;
@@ -33,9 +46,22 @@ export class UserState {
     ctx.setState(payload);
   }
 
-  @Action(GetUser)
-  public getUser(ctx: StateContext<PersonStateModel>, { payload }: GetUser) {
-    ctx.setState(payload);
+  @Action(GetUserAction)
+  public getUser({ setState, dispatch }: StateContext<PersonStateModel>) {
+    return this._userService
+      .getProfile()
+      .pipe(
+        tap((payload) => {
+          setState(produce((draft: PersonStateModel) => {
+            draft = payload;
+          }));
+        }),
+        mergeMap(() => {
+          return dispatch([
+            //todo stop spinner
+          ]);
+        })
+      );
   }
 
 
