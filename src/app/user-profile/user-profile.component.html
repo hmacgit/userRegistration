@@ -6,7 +6,11 @@
     <div class="formgrid grid m-2">
       <div class="field col">
         <label>{{controlConstants.img}}</label>
-        <p-image></p-image>
+        <p-image [src]="controlConstants.img"></p-image>
+        <mat-card-content>
+          <img [src]="controlConstants.img"
+               style="width: 300px;height: 200px;">
+        </mat-card-content>
       </div>
       <div class="field col">
         <label>{{controlConstants.name}}</label>

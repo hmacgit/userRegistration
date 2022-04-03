@@ -13,6 +13,7 @@ import {
 } from 'rxjs/operators';
 import produce from 'immer';
 import { Navigate } from '@ngxs/router-plugin';
+import {GetUserAction} from '../dashboard/states/user/user.actions';
 
 export interface AuthenticationStateModel {
   id: string;
@@ -76,7 +77,8 @@ export class AuthStateModule {
       mergeMap(({ success }) => dispatch([
         //todo stop spinner
         new Navigate(['profile']),
-        new LoginFlag(true)
+        new LoginFlag(true),
+        new GetUserAction(),
       ]))
     );
   }

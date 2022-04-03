@@ -14,13 +14,13 @@ import {AuthModule} from '../store/auth/auth.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageModule} from 'primeng/image';
 import {NgxsFormPluginModule} from '@ngxs/form-plugin';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     UserProfileComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -33,7 +33,8 @@ import {NgxsFormPluginModule} from '@ngxs/form-plugin';
     AuthModule,
     HttpClientModule,
     ImageModule,
-    NgxsFormPluginModule
+    NgxsFormPluginModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

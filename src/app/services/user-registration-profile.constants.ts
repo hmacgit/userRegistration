@@ -5,6 +5,6 @@ export class UserRegistrationProfileConstants  {
     email: 'email',
     password: 'password',
     bio: 'bio',
-    img: 'image'
+    img: 'img'
   };
 }

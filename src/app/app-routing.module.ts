@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from './auth.guard';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserRegistrationComponent} from './user-registration/user-registration.component';
+import {UserProfileResolveService} from './user-profile/user-profile-resolve.service';
 
 const routes: Routes = [
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
+    //resolve: [UserProfileResolveService],
     canActivate: [AuthGuard]
   },
   {
