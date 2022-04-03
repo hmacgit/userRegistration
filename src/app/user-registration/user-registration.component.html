@@ -1,9 +1,6 @@
-
-
 <form
   [formGroup]="fg"
   (ngSubmit)="submit()">
-
   <div class="card m-2">
     <h5 class="m-2">User Registration Page</h5>
     <div class="formgrid grid m-2">
@@ -40,11 +37,10 @@
         mat-raised-button
         color="primary">Submit</button>
       <button
-        (click)="login()"
+        (click)="logout()"
         mat-raised-button
         color="accent"
-        class="ml-2">login</button>
+        class="ml-2">Logout</button>
     </div>
   </div>
-
 </form>

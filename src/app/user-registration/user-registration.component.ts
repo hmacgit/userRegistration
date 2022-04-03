@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {UserRegistrationService} from './user-registration.service';
-import {UserRegistrationConstants} from './user-registration.constants';
 import {Store} from '@ngxs/store';
 import {SetAuthDataAction} from '../../store/auth/auth.actions';
 import {AuthService} from '../../store/auth/auth.service';
 import {Navigate} from '@ngxs/router-plugin';
 import {Router} from '@angular/router';
+import {UserRegistrationProfileConstants} from '../services/user-registration-profile.constants';
+import {UserRegistrationProfileService} from '../services/user-registration-profile.service';
 
 @Component({
   selector: 'app-user-registration',
@@ -16,33 +16,29 @@ import {Router} from '@angular/router';
 export class UserRegistrationComponent implements OnInit {
 
   fg: FormGroup;
-  controlConstants = UserRegistrationConstants.controls;
+  controlConstants = UserRegistrationProfileConstants.controls;
 
   constructor(
-    private userReg: UserRegistrationService,
+    private userReg: UserRegistrationProfileService,
     private _authService: AuthService,
     private _router: Router,
     private _store: Store
   ) { }
 
   ngOnInit(): void {
-    this.fg = this.userReg.dataEntry();
+    this.fg = this.userReg.UserRegistrationDataEntry();
   }
 
-  login() {
-    new Navigate(['profile']);
+  logout() {
+    //logout
   }
 
   submit() {
-    console.log('submit');
     if (this.fg.valid) {
-      console.log((this.fg.value));
       this._store.dispatch(new SetAuthDataAction(this.fg.value));
     } else {
       this.fg.markAllAsTouched();
     }
   }
-
-
 
 }

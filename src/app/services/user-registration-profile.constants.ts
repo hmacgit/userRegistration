@@ -1,9 +1,10 @@
-export class UserRegistrationConstants {
+export class UserRegistrationProfileConstants  {
   static controls = {
     id: 'id',
     name: 'name',
     email: 'email',
     password: 'password',
-    bio: 'bio'
+    bio: 'bio',
+    img: 'image'
   };
 }

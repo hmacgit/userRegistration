@@ -1,1 +1,39 @@
-<p>user-profile works!</p>
+<form
+  [formGroup]="fg">
+  <div class="card m-2">
+    <h5 class="m-2">User Profile Page</h5>
+    <div class="formgrid grid m-2">
+      <div class="field col">
+        <label>{{controlConstants.img}}</label>
+        <p-image></p-image>
+      </div>
+      <div class="field col">
+        <label>{{controlConstants.name}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.name"
+               class="inputfield w-full">
+      </div>
+      <div class="field col">
+        <label>{{controlConstants.email}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.email"
+               class="inputfield w-full">
+      </div>
+      <div class="field col">
+        <label>{{controlConstants.bio}}</label>
+        <input type="text"
+               [formControlName]="controlConstants.bio"
+               class="inputfield w-full">
+      </div>
+
+    </div>
+    <div
+      class="p-grid p-fluid my-1 d-flex ml-4">
+      <button
+        (click)="logout()"
+        mat-raised-button
+        color="accent"
+        class="ml-2">Logout</button>
+    </div>
+  </div>
+</form>
