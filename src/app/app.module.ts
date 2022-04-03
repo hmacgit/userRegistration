@@ -13,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {AuthModule} from '../store/auth/auth.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageModule} from 'primeng/image';
+import {NgxsFormPluginModule} from '@ngxs/form-plugin';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {ImageModule} from 'primeng/image';
     MatFormFieldModule,
     AuthModule,
     HttpClientModule,
-    ImageModule
+    ImageModule,
+    NgxsFormPluginModule
   ],
   providers: [],
   bootstrap: [AppComponent]

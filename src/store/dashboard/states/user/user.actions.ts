@@ -1,4 +1,4 @@
-import { PersonStateModel } from './user.state';
+import { IPersonStateModel } from './user.state';
 
 
 export enum UserActionTypes {
@@ -8,10 +8,9 @@ export enum UserActionTypes {
 
 export class SetUser {
   public static readonly type = UserActionTypes.SET;
-  constructor(public payload: PersonStateModel) {}
+  constructor(public payload: IPersonStateModel) {}
 }
 
 export class GetUserAction {
   public static readonly type = UserActionTypes.GET;
-  constructor(public payload: number) {}
 }
