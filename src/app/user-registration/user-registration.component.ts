@@ -30,7 +30,8 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   login() {
-    new Navigate(['profile']);
+    console.log('profile');
+    this._store.dispatch(new Navigate(['profile']))
   }
 
   submit() {

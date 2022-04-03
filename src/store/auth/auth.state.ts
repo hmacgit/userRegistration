@@ -1,10 +1,12 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
+  AuthActionTypes,
   SetAuthDataAction
 } from './auth.actions';
 import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
 import {
+  finalize,
   mergeMap,
   tap
 } from 'rxjs/operators';
@@ -18,6 +20,7 @@ export interface AuthenticationStateModel {
   password: string;
   bio: string;
   success: boolean;
+  loggedIn: boolean;
 }
 
 @State<AuthenticationStateModel>({
@@ -28,9 +31,16 @@ export interface AuthenticationStateModel {
     email: '',
     password: '',
     bio: '',
-    success: false
+    success: false,
+    loggedIn: false,
   }
 })
+
+export class LoginFlag {
+  static readonly type = AuthActionTypes.LOGIN_FLAG;
+
+  constructor(public payload: boolean) {}
+}
 
 @Injectable()
 export class AuthStateModule {
@@ -51,21 +61,31 @@ export class AuthStateModule {
     return { ...state };
   }
 
+  @Action(LoginFlag)
+  loginFlag({ patchState, dispatch }: StateContext<AuthenticationStateModel>, {payload}: LoginFlag ) {
+    patchState({
+      loggedIn: payload,
+    });
+  }
+
   @Action(SetAuthDataAction)
   public setAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: SetAuthDataAction) {
+    dispatch(new Navigate(['profile']));
     setState(AuthStateModule.setInstanceState(payload));
     //todo dispatch spinner
-    return this._authService.getAuth().pipe(
-      tap(({ success }) => {
+    return this._authService.getAuth()
+      .pipe(
+        tap(({ success }) => {
         setState(produce((draft: AuthenticationStateModel) => {
           draft.success = true;
         }));
-      }),
-      mergeMap(({ success }) => dispatch([
-        //todo stop spinner
-        new Navigate(['profile']),
-        //new LoginFlag(true)
-      ]))
+        }),
+        mergeMap(() => dispatch([
+          new Navigate(['profile']),
+          new LoginFlag(true)
+        ])),
+      //todo stop spinner
+        finalize(() => dispatch(new Navigate(['profile'])))
     );
   }
 

@@ -12,13 +12,14 @@ import {NgxsStoreModule} from '../store/store.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {AuthModule} from '../store/auth/auth.module';
 import {HttpClientModule} from '@angular/common/http';
+import {NgxsRouterPluginModule} from '@ngxs/router-plugin';
+import {NgxsModule} from '@ngxs/store';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     UserProfileComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,9 @@ import {HttpClientModule} from '@angular/common/http';
     MatButtonModule,
     MatFormFieldModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxsModule.forRoot([]),
+    NgxsRouterPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
