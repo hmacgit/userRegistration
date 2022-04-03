@@ -1,5 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
+  AuthActionTypes,
+  LoginFlag,
   SetAuthDataAction
 } from './auth.actions';
 import {AuthService} from './auth.service';
@@ -18,6 +20,7 @@ export interface AuthenticationStateModel {
   password: string;
   bio: string;
   success: boolean;
+  loggedIn: boolean;
 }
 
 @State<AuthenticationStateModel>({
@@ -28,7 +31,8 @@ export interface AuthenticationStateModel {
     email: '',
     password: '',
     bio: '',
-    success: false
+    success: false,
+    loggedIn: false,
   }
 })
 
@@ -51,6 +55,13 @@ export class AuthStateModule {
     return { ...state };
   }
 
+  @Action(LoginFlag)
+  loginFlag({ setState, patchState, dispatch }: StateContext<AuthenticationStateModel>, {payload}: LoginFlag ) {
+    patchState({
+      loggedIn: payload,
+    });
+  }
+
   @Action(SetAuthDataAction)
   public setAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: SetAuthDataAction) {
     setState(AuthStateModule.setInstanceState(payload));
@@ -64,7 +75,7 @@ export class AuthStateModule {
       mergeMap(({ success }) => dispatch([
         //todo stop spinner
         new Navigate(['profile']),
-        //new LoginFlag(true)
+        new LoginFlag(true)
       ]))
     );
   }
