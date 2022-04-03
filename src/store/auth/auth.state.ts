@@ -80,10 +80,17 @@ export class AuthStateModule {
           draft.success = true;
         }));
         }),
+
+        /*
         mergeMap(() => dispatch([
           new Navigate(['profile']),
-          new LoginFlag(true)
+          //new LoginFlag(true)
         ])),
+      */
+        mergeMap(() => {
+          return dispatch(new Navigate(['profile']));
+        }),
+
       //todo stop spinner
         finalize(() => dispatch(new Navigate(['profile'])))
     );
