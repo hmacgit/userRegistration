@@ -15,19 +15,19 @@ export class UserRegistrationService {
       [UserRegistrationConstants.controls.id]: null,
       [UserRegistrationConstants.controls.name]: [
         '',
-        Validators.required
+        //Validators.required
       ],
       [UserRegistrationConstants.controls.email]: [
         '',
-        Validators.required
+        //Validators.required
       ],
       [UserRegistrationConstants.controls.password]: [
         '',
-        Validators.required
+        //Validators.required
       ],
       [UserRegistrationConstants.controls.bio]: [
         '',
-        Validators.required
+        ///Validators.required
       ],
     });
   }

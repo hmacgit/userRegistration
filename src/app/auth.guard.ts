@@ -10,15 +10,15 @@ export class AuthGuard implements CanActivate {
 
 
   constructor(
-    private _ngRedux: NgRedux<any>,
+    //private _ngRedux: NgRedux<any>,
     //private _routeService: RouteService
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const user = this._ngRedux.getState().user;
-    const token = user.get('token');
+    //const user = this._ngRedux.getState().user;
+    //const token = user.get('token');
 
 
     return true;

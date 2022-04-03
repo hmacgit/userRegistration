@@ -12,6 +12,7 @@ import {
 } from 'rxjs/operators';
 import produce from 'immer';
 import { Navigate } from '@ngxs/router-plugin';
+import {Store} from 'redux';
 
 export interface AuthenticationStateModel {
   id: string;
@@ -70,7 +71,6 @@ export class AuthStateModule {
 
   @Action(SetAuthDataAction)
   public setAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: SetAuthDataAction) {
-    dispatch(new Navigate(['profile']));
     setState(AuthStateModule.setInstanceState(payload));
     //todo dispatch spinner
     return this._authService.getAuth()
@@ -81,20 +81,45 @@ export class AuthStateModule {
         }));
         }),
 
+
+        tap(() => setTimeout(() => dispatch(new Navigate(['profile'])), 100)),
         /*
         mergeMap(() => dispatch([
           new Navigate(['profile']),
-          //new LoginFlag(true)
+          new LoginFlag(true)
         ])),
-      */
-        mergeMap(() => {
-          return dispatch(new Navigate(['profile']));
-        }),
-
+*/
       //todo stop spinner
         finalize(() => dispatch(new Navigate(['profile'])))
     );
   }
+/*
+
+  @Action(SetAuthDataAction)
+  public setAuthData(ctx: StateContext<AuthenticationStateModel>, { payload }: SetAuthDataAction) {
+    ///ctx.setState(AuthStateModule.setInstanceState(payload));
+    //todo dispatch spinner
+   /!* return this._authService.getAuth()
+      .pipe(
+        tap(({ success }) => {
+          ctx.setState(produce((draft: AuthenticationStateModel) => {
+          draft.success = true;
+        }));
+        }),
+
+        mergeMap(() => ctx.dispatch([
+          new Navigate(['profile']),
+          new LoginFlag(true)
+        ])),
+
+      //todo stop spinner
+        finalize(() => ctx.dispatch(new Navigate(['profile'])))
+    );*!/
+    return ctx.dispatch(new Navigate(['profile']));
+  }
+
+*/
+
 
 
 }
