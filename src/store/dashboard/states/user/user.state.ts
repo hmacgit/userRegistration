@@ -15,6 +15,7 @@ import {UpdateFormValue} from '@ngxs/form-plugin';
 import {StoreConstants} from '../../../store.constants';
 import {UserMapping} from './user.mapping';
 import {INgxsForm} from '../../../../app/interfaces/shared.interface';
+import {AuthenticationStateModel} from '../../../auth/auth.state';
 
 export interface IPersonStateModel {
   deForm: INgxsForm<IPersonDe>;
@@ -42,6 +43,11 @@ export class UserState {
   }
 
   @Selector()
+  public static getImage(state: IPersonStateModel) {
+    return state.deForm.model?.img;
+  }
+
+  @Selector()
   public static getUser(state: IPersonStateModel): IPersonStateModel {
     return state;
   }
@@ -51,8 +57,6 @@ export class UserState {
     ctx.setState(payload);
   }
 
-
-
   @Action(GetUserAction)
   public exciseHsGet(
     { setState, dispatch }: StateContext<IPersonStateModel>,
@@ -61,41 +65,21 @@ export class UserState {
     //todo spinner
     return this._userService
       .getProfile().pipe(
-      mergeMap(( data ) =>
-        dispatch(
-          new UpdateFormValue({
-            path: StoreConstants.formPaths.user.de,
-            value: UserMapping.toDe(data)
-          })
-        )
-      ),
+        tap((data)=> {
+          setState(produce((draft: IPersonStateModel) => {
+            draft.deForm.model = data;
+          }));
+        }),
+        mergeMap(( data ) =>
+          dispatch(
+            new UpdateFormValue({
+              path: StoreConstants.formPaths.user.de,
+              value: UserMapping.toDe(data)
+            })
+          )
+        ),
         //todo dispatch spinner
     );
   }
-
-
-  /*
-
-  @Action(GetUserAction)
-  public getUser({ setState, dispatch }: StateContext<PersonStateModel>) {
-    return this._userService
-      .getProfile()
-      .pipe(
-        tap((payload) => {
-          setState(produce((draft: PersonStateModel) => {
-            draft = payload;
-          }));
-        }),
-        mergeMap(() => {
-          return dispatch([
-            //todo stop spinner
-          ]);
-        })
-      );
-  }
-
-*/
-
-
 
 }

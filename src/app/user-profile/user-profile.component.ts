@@ -4,9 +4,13 @@ import {UserRegistrationProfileConstants} from '../services/user-registration-pr
 import {UserRegistrationProfileService} from '../services/user-registration-profile.service';
 import {AuthService} from '../../store/auth/auth.service';
 import {Router} from '@angular/router';
-import {Store} from '@ngxs/store';
+import {
+  Select,
+  Store
+} from '@ngxs/store';
 import {GetUserAction} from '../../store/dashboard/states/user/user.actions';
 import {StoreConstants} from '../../store/store.constants';
+import {UserState} from '../../store/dashboard/states/user/user.state';
 
 @Component({
   selector: 'app-user-profile',
@@ -17,6 +21,8 @@ export class UserProfileComponent implements OnInit {
   fg: FormGroup;
   controlConstants = UserRegistrationProfileConstants.controls;
   ngxsPath = StoreConstants.formPaths.user.de;
+
+  @Select(UserState.getImage) imageUrl$: any;
 
   constructor(
     private userReg: UserRegistrationProfileService,
@@ -30,12 +36,8 @@ export class UserProfileComponent implements OnInit {
   }
 
 
-  getItem() {
-    this._store.dispatch(new GetUserAction());
-  }
-
   logout() {
-    //logout
+    //todo logout
   }
 
 }

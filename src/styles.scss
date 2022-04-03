@@ -14,6 +14,11 @@
 @import '~primeng/resources/primeng.min.css';
 
 
+.profile-image {
+  width: 300px;
+  height: 200px;
+}
+
 .mybutton {
   @include styleclass('bg-blue-500 text-white hover:bg-blue-600 border-round transition-colors transition-duration-150 p-3 border-none');
 }

@@ -5,12 +5,14 @@
     <h5 class="m-2">User Profile Page</h5>
     <div class="formgrid grid m-2">
       <div class="field col">
-        <label>{{controlConstants.img}}</label>
-        <p-image [src]="controlConstants.img"></p-image>
-        <mat-card-content>
-          <img [src]="controlConstants.img"
-               style="width: 300px;height: 200px;">
-        </mat-card-content>
+
+        <div *ngIf="imageUrl$ | async as imgUrl">
+          <mat-card-content>
+            <img src="imgUrl"
+                 class="profile-image">
+          </mat-card-content>
+        </div>
+
       </div>
       <div class="field col">
         <label>{{controlConstants.name}}</label>
@@ -34,11 +36,6 @@
     </div>
     <div
       class="p-grid p-fluid my-1 d-flex ml-4">
-      <button
-        (click)="getItem()"
-        mat-raised-button
-        color="accent"
-        class="ml-2">getItem</button>
       <button
         (click)="logout()"
         mat-raised-button
