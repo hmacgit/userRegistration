@@ -1,30 +1,25 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetUser } from './user.actions';
+import {
+  GetUser,
+  SetUser
+} from './user.actions';
 
 export interface PersonStateModel {
-  userId: string;
+  id: string;
+  name: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  positionId: string;
-  positionName: string;
-  departmentCode: string;
-  departmentName: string;
+  bio: string;
+  img: string;
 }
 
 @State<PersonStateModel>({
   name: 'user',
   defaults: {
-    userId: '',
+    id: '',
+    name: '',
     email: '',
-    firstName: '',
-    lastName: '',
-    fullName: '',
-    positionId: '',
-    positionName: '',
-    departmentCode: '',
-    departmentName: ''
+    bio: '',
+    img: ''
   }
 })
 export class UserState {
@@ -37,4 +32,13 @@ export class UserState {
   public setUser(ctx: StateContext<PersonStateModel>, { payload }: SetUser) {
     ctx.setState(payload);
   }
+
+  @Action(GetUser)
+  public getUser(ctx: StateContext<PersonStateModel>, { payload }: GetUser) {
+    ctx.setState(payload);
+  }
+
+
+
+
 }

@@ -1,6 +1,7 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import {
   AuthActionTypes,
+  GetAuthDataAction,
   LoginFlag,
   SetAuthDataAction
 } from './auth.actions';
@@ -78,6 +79,23 @@ export class AuthStateModule {
         new LoginFlag(true)
       ]))
     );
+  }
+
+  @Action(GetAuthDataAction)
+  public getAuthData({ setState, dispatch }: StateContext<AuthenticationStateModel>, { payload }: GetAuthDataAction) {
+    return this._authService
+      .getProfile()
+      .pipe(
+        tap(({ success }) => {
+          setState(produce((draft: AuthenticationStateModel) => {
+            draft.success = true;
+          }));
+        }),
+
+        mergeMap(({ success }) => dispatch([
+          //todo stop spinner
+        ]))
+      );
   }
 
 

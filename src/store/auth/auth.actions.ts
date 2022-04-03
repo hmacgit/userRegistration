@@ -1,12 +1,17 @@
 import { AuthenticationStateModel } from './auth.state';
-import {Injectable} from '@angular/core';
 
 export enum AuthActionTypes {
   SET = '[Auth] Set Auth data',
+  GET = '[Auth] Get Auth data',
   LOGIN_FLAG = '[Auth] LoginFlag'
 }
 
 export class SetAuthDataAction {
+  public static readonly type = AuthActionTypes.SET
+  constructor(public payload: AuthenticationStateModel) {}
+}
+
+export class GetAuthDataAction {
   public static readonly type = AuthActionTypes.SET
   constructor(public payload: AuthenticationStateModel) {}
 }
