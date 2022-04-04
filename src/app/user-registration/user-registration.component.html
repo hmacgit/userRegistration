@@ -9,25 +9,55 @@
         <input type="text"
                [formControlName]="controlConstants.name"
                class="inputfield w-full">
-
+        <span class="text-danger"
+          *ngIf="(registerFormControl[controlConstants.name].touched || submitted) && registerFormControl[controlConstants.name].errors?.required">
+          Name is required
+        </span>
       </div>
       <div class="field col">
         <label>{{controlConstants.email}}</label>
         <input type="text"
                [formControlName]="controlConstants.email"
                class="inputfield w-full">
+        <span class="text-danger"
+              *ngIf="(registerFormControl.email.touched || submitted) &&
+               registerFormControl.email.errors?.required">
+                                Email is required
+                            </span>
+        <span class="text-danger"
+              *ngIf="registerFormControl.email.touched &&
+              registerFormControl.email.errors?.email">
+            Enter a valid email address
+        </span>
       </div>
       <div class="field col">
         <label>{{controlConstants.password}}</label>
         <input type="password"
                [formControlName]="controlConstants.password"
                class="inputfield w-full">
+
+        <span class="text-danger"
+              *ngIf="(registerFormControl.password.touched || submitted) &&
+               registerFormControl.password.errors?.required">
+            Password is required
+        </span>
+        <span class="text-danger"
+              *ngIf="registerFormControl.password.touched &&
+              registerFormControl.password.errors?.invalidPassword">
+            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+            letter and 1 number
+        </span>
       </div>
       <div class="field col">
         <label>{{controlConstants.bio}}</label>
         <input type="text"
                [formControlName]="controlConstants.bio"
                class="inputfield w-full">
+        <span class="text-danger"
+              *ngIf="(registerFormControl.bio.touched || submitted) &&
+               registerFormControl.bio.errors?.required">
+            bio is required
+        </span>
       </div>
     </div>
     <div
@@ -44,4 +74,5 @@
         class="ml-2">Logout</button>
     </div>
   </div>
+
 </form>

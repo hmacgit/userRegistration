@@ -20,6 +20,7 @@ export class UserRegistrationComponent implements OnInit {
 
   fg: FormGroup;
   controlConstants = UserRegistrationProfileConstants.controls;
+  submitted: boolean;
 
   constructor(
     private userReg: UserRegistrationProfileService,
@@ -39,7 +40,12 @@ export class UserRegistrationComponent implements OnInit {
     ]);
   }
 
+  get registerFormControl() {
+    return this.fg.controls;
+  }
+
   submit() {
+    this.submitted = true;
     if (this.fg.valid) {
       this._store.dispatch(new SetAuthDataAction(this.fg.value));
     } else {

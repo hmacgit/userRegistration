@@ -19,22 +19,22 @@ export class UserRegistrationProfileService {
       [UserRegistrationProfileConstants.controls.id]: null,
       [UserRegistrationProfileConstants.controls.name]: [
         '',
-        uiValidators.required,
+        Validators.required
       ],
       [UserRegistrationProfileConstants.controls.email]: [
         '',
         [
-         uiValidators.required,
-         uiValidators.email
+          Validators.required,
+          Validators.email
         ]
       ],
       [UserRegistrationProfileConstants.controls.password]: [
         '',
-        uiValidators.required,
+        Validators.required,
       ],
       [UserRegistrationProfileConstants.controls.bio]: [
         '',
-        uiValidators.required,
+        Validators.required,
       ],
     });
   }

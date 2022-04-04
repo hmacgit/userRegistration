@@ -16,6 +16,8 @@ import {ImageModule} from 'primeng/image';
 import {NgxsFormPluginModule} from '@ngxs/form-plugin';
 import {MatCardModule} from '@angular/material/card';
 import { ValidationBaseDirective } from './directives/validation-base.directive';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { ValidationBaseDirective } from './directives/validation-base.directive'
     AppRoutingModule,
     ReactiveFormsModule,
     UserRegistrationModule,
+    BrowserAnimationsModule,
     NgxsStoreModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -36,7 +39,8 @@ import { ValidationBaseDirective } from './directives/validation-base.directive'
     HttpClientModule,
     ImageModule,
     NgxsFormPluginModule,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

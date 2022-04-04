@@ -1,20 +1,17 @@
-
-<nav>
-  <ul>
-    <li>
-      <a
-        routerLink="login"
-        routerLinkActive="active"
-        class="p-md-2">registration</a>
-    </li>
-    <li>
-      <a
-        routerLink="profile"
-        routerLinkActive="active"
-        class="p-md-2">profile</a>
-    </li>
-  </ul>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a
+          class="nav-link" routerLink="login">Registration</a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link" routerLink="profile">Profile</a>
+      </li>
+    </ul>
+  </div>
 </nav>
-
-
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
