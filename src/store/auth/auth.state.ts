@@ -49,6 +49,11 @@ export class AuthStateModule {
     return AuthStateModule.getInstanceState(state);
   }
 
+  @Selector()
+  public static getLoggedIn(state: AuthenticationStateModel): boolean {
+    return state.loggedIn;
+  }
+
   private static setInstanceState(state: AuthenticationStateModel): AuthenticationStateModel {
     return { ...state };
   }

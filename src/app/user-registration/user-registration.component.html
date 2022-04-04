@@ -71,8 +71,10 @@
         (click)="logout()"
         mat-raised-button
         color="accent"
+        [disabled]="!(loggedIn$ | async)"
         class="ml-2">Logout</button>
     </div>
+
   </div>
 
 </form>
