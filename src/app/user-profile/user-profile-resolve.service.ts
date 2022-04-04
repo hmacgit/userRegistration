@@ -21,9 +21,6 @@ export class UserProfileResolveService implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    const profile = route.paramMap.get('profile');
-    return profile ?
-      this._store.dispatch(new GetUserAction())
-      : EMPTY;
+      return this._store.dispatch(new GetUserAction())
   }
 }

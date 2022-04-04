@@ -83,7 +83,6 @@ export class AuthStateModule {
         //todo stop spinner
         new Navigate(['profile']),
         new LoginFlag(true),
-        new GetUserAction(),
       ]))
     );
   }
