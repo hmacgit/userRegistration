@@ -1,3 +1,9 @@
+# Author: Hung Mac
+# Use Ngsx redux framework, rsjx.
+# Entering data to retrieve mock data
+# Image link did not have the correct url extension. .jpg, png.
+
+
 # User Registration
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
