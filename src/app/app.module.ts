@@ -15,12 +15,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {ImageModule} from 'primeng/image';
 import {NgxsFormPluginModule} from '@ngxs/form-plugin';
 import {MatCardModule} from '@angular/material/card';
+import { ValidationBaseDirective } from './directives/validation-base.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationComponent,
     UserProfileComponent,
+    ValidationBaseDirective,
   ],
   imports: [
     BrowserModule,

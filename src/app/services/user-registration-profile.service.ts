@@ -5,6 +5,8 @@ import {
 } from '@angular/forms';
 import {UserRegistrationProfileConstants} from './user-registration-profile.constants';
 
+import {uiValidators} from '../util/ui-validators'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,19 +19,22 @@ export class UserRegistrationProfileService {
       [UserRegistrationProfileConstants.controls.id]: null,
       [UserRegistrationProfileConstants.controls.name]: [
         '',
-        Validators.required
+        uiValidators.required,
       ],
       [UserRegistrationProfileConstants.controls.email]: [
         '',
-        Validators.required
+        [
+         uiValidators.required,
+         uiValidators.email
+        ]
       ],
       [UserRegistrationProfileConstants.controls.password]: [
         '',
-        Validators.required
+        uiValidators.required,
       ],
       [UserRegistrationProfileConstants.controls.bio]: [
         '',
-        Validators.required
+        uiValidators.required,
       ],
     });
   }
