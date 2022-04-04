@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {Store} from '@ngxs/store';
-import {SetAuthDataAction} from '../../store/auth/auth.actions';
+import {
+  LoginFlag,
+  SetAuthDataAction
+} from '../../store/auth/auth.actions';
 import {AuthService} from '../../store/auth/auth.service';
 import {Navigate} from '@ngxs/router-plugin';
 import {Router} from '@angular/router';
@@ -30,7 +33,10 @@ export class UserRegistrationComponent implements OnInit {
   }
 
   logout() {
-    //logout
+    this._store.dispatch([
+      new LoginFlag(false),
+      new Navigate(['login'])
+    ]);
   }
 
   submit() {

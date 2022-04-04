@@ -11,6 +11,8 @@ import {
 import {GetUserAction} from '../../store/dashboard/states/user/user.actions';
 import {StoreConstants} from '../../store/store.constants';
 import {UserState} from '../../store/dashboard/states/user/user.state';
+import {LoginFlag} from '../../store/auth/auth.actions';
+import {Navigate} from '@ngxs/router-plugin';
 
 @Component({
   selector: 'app-user-profile',
@@ -37,7 +39,10 @@ export class UserProfileComponent implements OnInit {
 
 
   logout() {
-    //todo logout
+    this._store.dispatch([
+      new LoginFlag(false),
+      new Navigate(['login'])
+    ]);
   }
 
 }
