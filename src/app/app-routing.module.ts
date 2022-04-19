@@ -13,10 +13,20 @@ const routes: Routes = [
   },
   {
     path: 'profile',
+    loadChildren: () => import('./user-profile/user-profile-routing.module').then(m => m.UserProfileRoutingModule),
+    canLoad: [AuthGuard]
+  },
+
+  /*
+  {
+    path: 'profile',
     component: UserProfileComponent,
     resolve: [UserProfileResolveService],
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
+  */
+
   {
     path: '',
     pathMatch: 'full',
